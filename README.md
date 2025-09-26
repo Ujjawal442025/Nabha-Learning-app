@@ -92,19 +92,19 @@ punjab-learning-platform/
 ├── teacher.html            # Teacher dashboard
 ├── manifest.json           # PWA manifest
 ├── sw.js                   # Service worker
-├── css/
-│   ├── style.css          # Login page styles
-│   ├── student.css        # Student dashboard styles
-│   └── teacher.css        # Teacher dashboard styles
-├── js/
-│   ├── languages.js       # Multilingual support
-│   ├── script.js          # Login functionality
-│   ├── student.js         # Student dashboard logic
-│   └── teacher.js         # Teacher dashboard logic
-├── assets/
-│   └── logo.svg           # App logo
-├── components/
-│   └── offline-page.html  # Offline fallback page
+├── newstyle.css            # Login page styles
+├── newstudent.css          # Student dashboard styles
+├── teacher.css             # Teacher dashboard styles
+├── languages.js            # Multilingual support
+├── script.js               # Login functionality
+├── student.js              # Student dashboard logic
+├──teacher.js               # Teacher dashboard logic
+├── logo.svg                # App logo
+├── onlinelearn.jpg         # App logo
+├── intrntusg.jpg           # App logo
+├── digital.jpg             # App logo
+├── basiccompskill.jpg      # App logo
+├── offline-page.html       # Offline fallback page
 └── data/
     └── (quiz data, modules, etc.)
 ```
@@ -162,13 +162,13 @@ punjab-learning-platform/
 ## 🔧 Customization
 
 ### Adding New Languages
-1. Edit `js/languages.js`
+1. Edit `languages.js`
 2. Add translations to the `translations` object
 3. Update language selection in `index.html`
 
 ### Adding New Subjects
 1. Update subject cards in `student.html`
-2. Add quiz data in `js/student.js`
+2. Add quiz data in `student.js`
 3. Create corresponding PDF materials
 
 ### Customizing Theme
