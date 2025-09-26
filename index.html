@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Nabha Learning App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Lemon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="newstyle.css" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3338A0">
+    <!-- Offline Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed');
+                    });
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <!--Heading -->
+    <div class="login-page">
+        <div class="title">
+            <div class="logo">
+                <img src="logoN.jpg" alt="Nabha Learning App Logo"></div>
+            <div class="heading">
+            <h1 data-translate="app_name">Nabha Learning App</h1>
+            <p data-translate="app_subtitle">Rural Education Platform - SIH 2025</p>
+            </div>
+        </div>
+        
+        <!--Choose Language -->
+        <div class="choose-language">
+            <label class="language-head" data-translate="choose_language">Choose Language / भाषा चुनें / ਭਾਸ਼ਾ ਚੁਣੋ</label>
+            <div class="language-options">
+            <div class="language-option">
+                <input type="radio" id="lang-hindi" name="language" value="hindi">
+                <label for="lang-hindi" class="language" data-lang="hi">हिंदी</label>
+            </div>
+            <div class="language-option">
+                <input type="radio" id="lang-english" name="language" value="english" checked >
+                <label for="lang-english" class="language" data-lang="en">English</label>
+            </div>
+            <div class="language-option">
+                <input type="radio" id="lang-punjab" name="language" value="punjabi" >
+                <label for="lang-punjab" class="language" data-lang="pb">ਪੰਜਾਬੀ</label>
+            </div>
+            </div>
+        </div>
+        
+        <!-- Choose Your Profession -->
+        <div class="choose-profession">
+            <label class="language-head" data-translate="choose_profession">Choose Profession / पेशा चुनें / ਪੇਸ਼ੇ ਦੀ ਚੋਣ ਕਰੋ</label>
+            <div class="language-options">
+            <div class="language-option">
+                <input type="radio" id="user-student" name="userType" value="student" checked>
+                <label for="user-student"class="language student" data-translate="student">Student 👨‍🎓</label>
+            </div>
+            <div class="language-option">
+                <input type="radio" id="user-teacher" name="userType" value="teacher">
+                <label for="user-teacher"  class="language teacher" data-translate="teacher">Teacher 👨‍🏫</label>
+            </div>
+            </div>
+        </div>
+        
+        <!--Login Form -->
+        <form class="login-form">
+            <div class="form-label">
+                <label data-translate="full_name">Full Name</label>
+                <div class="Username">
+                    <input type="text"
+                    placeholder="Enter your Full Name"
+                    class="form-input"
+                    id="fullname"
+                    required
+                        autocomplete="current-name"
+                        maxlength="50"
+                        data-translate-placeholder="enter_full_name"
+                    >
+                </div>
+            </div>
+            <div class="form-label">
+                <label data-translate="username">Username</label>
+                <div class="Username">
+                    <input type="text"
+                    placeholder="student123"
+                    pattern="[a-zA-Z]{4,}[0-9]{3,}"
+                    class="form-input User"
+                    id="username"
+                    required
+                    >
+            </div>
+            <div class="form-label">
+                <label data-translate="password">Password</label>
+                <div class="password-container">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password"
+                        class="form-input pwd" 
+                        placeholder="demo@123"
+                        pattern="^([a-zA-Z]{2,}@[a-zA-Z]{2,}[0-9]{2,}|[a-zA-Z]{2,}@[0-9]{2,}|[a-zA-Z]{2,}[0-9]{2,}@[a-zA-Z]{2,}[0-9]{2,}|[a-zA-Z]{2,}[0-9]{2,}@[a-zA-Z]{2,}|[0-9]{2,}[a-zA-Z]{2,}@[a-zA-Z]{2,}[0-9]{2,}|[0-9]{2,}@[a-zA-Z]{2,})$"
+                        required
+                        >
+                    <button type="button" class="password-toggle" aria-label="Show password">👁️</button>
+                </div>
+            </div>
+            <button type="submit" class="submit" data-translate="login">Login
+            </button>
+        </form>
+        
+        <!-- Forgot Password -->
+        <div class="forgot-password">
+            <a href="#forgot" aria-label="Reset your password" data-translate="forgot_password">Forgot Password?</a>
+        </div>
+        
+        <!-- Demo -->
+        <div class="demo-block" >
+          <h3 data-translate="demo_credentials">Demo Credentials</h3>
+          <div class="muted-sm">
+            <strong data-translate="students">Students:</strong> student123 / demo@123, student2367 / de@mo123<br>
+            <strong data-translate="teacher">Teacher:</strong> teacher1345 / teach@123
+          </div>
+        </div>
+        
+        <!-- Offline Status -->
+        <div class="offline-status" id="offlineStatus" style="display: none;">
+            <span data-translate="offline_mode">🔴 Offline Mode - Limited functionality available</span>
+        </div>
+    </div>
+    
+    <!-- Language Data -->
+    <script src="languages.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

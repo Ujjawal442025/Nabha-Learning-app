@@ -1,0 +1,28 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="#3338A0" stroke="#2d2873" stroke-width="4"/>
+  
+  <!-- Book Icon -->
+  <rect x="60" y="70" width="80" height="60" rx="4" fill="#FEFBC7" opacity="0.9"/>
+  <rect x="65" y="75" width="70" height="50" rx="2" fill="#F0E4D3"/>
+  
+  <!-- Book Pages -->
+  <line x1="100" y1="80" x2="100" y2="120" stroke="#3338A0" stroke-width="2"/>
+  <line x1="70" y1="90" x2="95" y2="90" stroke="#666" stroke-width="1"/>
+  <line x1="105" y1="90" x2="130" y2="90" stroke="#666" stroke-width="1"/>
+  <line x1="70" y1="100" x2="95" y2="100" stroke="#666" stroke-width="1"/>
+  <line x1="105" y1="100" x2="130" y2="100" stroke="#666" stroke-width="1"/>
+  <line x1="70" y1="110" x2="95" y2="110" stroke="#666" stroke-width="1"/>
+  <line x1="105" y1="110" x2="130" y2="110" stroke="#666" stroke-width="1"/>
+  
+  <!-- Graduation Cap -->
+  <polygon points="85,50 115,50 120,45 80,45" fill="#FEFBC7"/>
+  <rect x="80" y="45" width="40" height="8" rx="2" fill="#D9A299"/>
+  <circle cx="120" cy="49" r="2" fill="#FEFBC7"/>
+  
+  <!-- Text -->
+  <text x="100" y="170" font-family="Arial, sans-serif" font-size="16" font-weight="bold" 
+        text-anchor="middle" fill="#FEFBC7">Punjab Learning</text>
+  <text x="100" y="190" font-family="Arial, sans-serif" font-size="12" 
+        text-anchor="middle" fill="#FEFBC7" opacity="0.8">Government Platform</text>
+</svg>

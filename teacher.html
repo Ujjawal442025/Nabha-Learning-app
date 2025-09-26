@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-translate="app_name">Nabha Learning App - Teacher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Lemon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="teacher.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3338A0">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="title">
+            <div class="logo"><img src="logoN.jpg" alt="logo"></div>
+            <div class="heading">
+                <h1 data-translate="app_name">Nabha Learning App</h1>
+                <p id="welcomeName" data-translate="welcome">Welcome</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="connectivity-status" id="connectivityStatus" data-translate="online">🟢 Online</div>
+            <button class="logout-btn" onclick="logout()" data-translate="logout">Logout</button>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <button data-section="dashboard" class="active" data-translate="dashboard">🏠 Dashboard</button>
+            <button data-section="classrooms" data-translate="classrooms">🏫 Classrooms</button>
+            <button data-section="students" data-translate="students">👥 Students</button>
+            <button data-section="content" data-translate="content">📚 Content</button>
+            <button data-section="assignments" data-translate="assignments">📝 Assignments</button>
+            <button data-section="analytics" data-translate="analytics">📊 Analytics</button>
+            <button data-section="upload" data-translate="upload">📤 Upload</button>
+        </div>
+
+        <div class="content-area">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section active">
+                <h2 class="section-title" data-translate="dashboard">Teacher Dashboard</h2>
+                <div class="main">
+                    <div class="card" id="card1">
+                        <h2 id="totalClassroomsCount">3</h2>
+                        <h4 data-translate="total_classrooms">Total Classrooms</h4>
+                    </div>
+                    <div class="card" id="card2">
+                        <h2 id="totalStudentsCount">25</h2>
+                        <h4 data-translate="total_students">Total Students</h4>
+                    </div>
+                    <div class="card" id="card3">
+                        <h2 id="totalContentCount">18</h2>
+                        <h4 data-translate="content_uploaded">Content Uploaded</h4>
+                    </div>
+                    <div class="card" id="card4">
+                        <h2 id="assignmentsGivenCount">12</h2>
+                        <h4 data-translate="assignments_given">Assignments Given</h4>
+                    </div>
+                </div>
+                
+                <div class="extra">
+                    <h3 data-translate="recent_activity">Recent Activity</h3>
+                    <div class="activity">
+                        <div class="classes">
+                            <h4>Class 10-A submitted Math Assignment</h4>
+                            <div class="details">
+                                <p>📊 Average: 85%</p>
+                                <p>👥 15/18 submitted</p>
+                                <p>⏱️ 2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="review">
+                            <button data-translate="review">Review</button>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="classes">
+                            <h4>New student joined Class 9-B</h4>
+                            <div class="details">
+                                <p>👤 Simran Kaur</p>
+                                <p>🆕 New enrollment</p>
+                                <p>⏱️ 1 day ago</p>
+                            </div>
+                        </div>
+                        <div class="review">
+                            <button onclick="viewStudent('simran-kaur')" data-translate="view">View</button>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="classes">
+                            <h4>Video lecture uploaded successfully</h4>
+                            <div class="details">
+                                <p>📹 "Algebra Fundamentals"</p>
+                                <p>✅ Published to Class 10-A</p>
+                                <p>⏱️ 3 days ago</p>
+                            </div>
+                        </div>
+                        <div class="review">
+                            <button onclick="viewContent('algebra-fundamentals')" data-translate="view">View</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3 data-translate="quick_actions">Quick Actions</h3>
+                    <div class="actions-grid">
+                        <div class="action card1">
+                        <button class="action-btn" onclick="showCreateClassroomModal()" data-translate="create_classroom">
+                            <span class="action-icon">🏫</span>
+                            <span>Create Classroom</span>
+                        </button>
+                        </div>
+                        <div class="action card2">
+                        <button class="action-btn" onclick="showUploadContentModal()" data-translate="upload_content">
+                            <span class="action-icon">📤</span>
+                            <span>Upload Content</span>
+                        </button>
+                        </div>
+                        <div class="action card3">
+                        <button class="action-btn" onclick="showCreateAssignmentModal()" data-translate="create_assignment">
+                            <span class="action-icon">📝</span>
+                            <span>Create Assignment</span>
+                        </button>
+                        </div>
+                        <div class="action card4">
+                        <button class="action-btn" onclick="showSection('analytics')" data-translate="view_analytics">
+                            <span class="action-icon">📊</span>
+                            <span>View Analytics</span>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classrooms Section -->
+            <div id="classrooms" class="section">
+                <h2 class="section-title" data-translate="classroom_management">Classroom Management</h2>
+                
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="showCreateClassroomModal()" data-translate="create_new_classroom">
+                        🏫 Create New Classroom
+                    </button>
+                </div>
+                <div class="class">
+                <div class="classrooms-grid" id="classroomsGrid">
+                    <!-- Classrooms will be populated here -->
+                </div>
+                </div>
+            </div>
+
+            <!-- Students Section -->
+            <div id="students" class="section">
+                <h2 class="section-title" data-translate="student_management">Student Management</h2>
+                
+                <div class="students-filters">
+                    <select id="classroomFilter" onchange="filterStudents()">
+                        <option value="">All Classrooms</option>
+                        <option value="class-10a">Class 10-A</option>
+                        <option value="class-9b">Class 9-B</option>
+                        <option value="class-11c">Class 11-C</option>
+                    </select>
+                    <input type="search" id="studentSearch" placeholder="Search students..." onkeyup="searchStudents()">
+                    <button class="btn btn-secondary" onclick="showAddStudentModal()" data-translate="add_student">👤 Add Student</button>
+                </div>
+                <div class="stud">
+                <div class="students-grid" id="studentsGrid">
+                    <!-- Students will be populated here -->
+                </div>
+                </div>
+            </div>
+
+            <!-- Content Section -->
+            <div id="content" class="section">
+                <h2 class="section-title" data-translate="content_management">Content Management</h2>
+                
+                <div class="content-tabs">
+                    <button id="tab-btn1" class="tab-btn active" onclick="showContentTab('videos')" data-translate="videos">Videos</button>
+                    <button id="tab-btn1" class="tab-btn" onclick="showContentTab('pdfs')" data-translate="pdfs">PDFs</button>
+                    <button id="tab-btn1" class="tab-btn" onclick="showContentTab('quizzes')" data-translate="quizzes">Quizzes</button>
+                </div>
+                <div class="cont">
+                <div class="content-grid" id="contentGrid">
+                    <!-- Content will be populated here -->
+                </div>
+                </div>
+            </div>
+
+            <!-- Assignments Section -->
+            <div id="assignments" class="section">
+                <h2 class="section-title" data-translate="assignment_management">Assignment Management</h2>
+                
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="showCreateAssignmentModal()" data-translate="create_assignment">
+                        📝 Create Assignment
+                    </button>
+                </div>
+                <div class="assign">
+                <div class="assignments-grid" id="assignmentsGrid">
+                    <!-- Assignments will be populated here -->
+                </div>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div id="analytics" class="section">
+                <h2 class="section-title" data-translate="analytics_dashboard">Analytics Dashboard</h2>
+                
+                <div class="analytics-overview">
+                    <div class="analytics-card">
+                        <h3>Student Engagement</h3>
+                        <div class="chart-container">
+                            <div class="progress-chart">
+                                <div class="chart-bar" style="height: 85%">
+                                    <span class="bar-label">85%</span>
+                                </div>
+                                <div class="chart-bar" style="height: 72%">
+                                    <span class="bar-label">72%</span>
+                                </div>
+                                <div class="chart-bar" style="height: 91%">
+                                    <span class="bar-label">91%</span>
+                                </div>
+                                <div class="chart-bar" style="height: 78%">
+                                    <span class="bar-label">78%</span>
+                                </div>
+                            </div>
+                            <div class="chart-labels">
+                                <span>Class 10-A</span>
+                                <span>Class 9-B</span>
+                                <span>Class 11-C</span>
+                                <span>Average</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3>Assignment Completion</h3>
+                        <div class="completion-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">89%</span>
+                                <span class="stat-label">On Time</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">7%</span>
+                                <span class="stat-label">Late</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">4%</span>
+                                <span class="stat-label">Missing</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3>Content Usage</h3>
+                        <div class="usage-list">
+                            <div class="usage-item">
+                                <span class="usage-name">Video Lectures</span>
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 92%"></div>
+                                </div>
+                                <span class="usage-percent">92%</span>
+                            </div>
+                            <div class="usage-item">
+                                <span class="usage-name">PDF Materials</span>
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 76%"></div>
+                                </div>
+                                <span class="usage-percent">76%</span>
+                            </div>
+                            <div class="usage-item">
+                                <span class="usage-name">Quizzes</span>
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 84%"></div>
+                                </div>
+                                <span class="usage-percent">84%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Section -->
+            <div id="upload" class="section">
+                <h2 class="section-title" data-translate="upload_content">Upload Content</h2>
+                
+                <div class="upload-container">
+                    <div class="upload-card">
+                        <h3>📹 Upload Video Lecture</h3>
+                        <div class="upload-area" onclick="triggerFileInput('videoFile')">
+                            <div class="upload-icon">📤</div>
+                            <p>Click to select ==video file or drag and drop</p>
+                            <small>Supported: MP4, AVI, MOV (Max: 500MB)</small>
+                            <input type="file" id="videoFile" accept="video/*" style="display: none;" onchange="handleFileUpload(this, 'video')">
+                        </div>
+                    </div>
+                    
+                    <div class="upload-card">
+                        <h3>📄 Upload PDF Material</h3>
+                        <div class="upload-area" onclick="triggerFileInput('pdfFile')">
+                            <div class="upload-icon">📤</div>
+                            <p>Click to select PDF file or drag and drop</p>
+                            <small>Supported: PDF (Max: 50MB)</small>
+                            <input type="file" id="pdfFile" accept=".pdf" style="display: none;" onchange="handleFileUpload(this, 'pdf')">
+                        </div>
+                    </div>
+                    
+                    <div class="upload-card">
+                        <h3>📝 Create Quiz</h3>
+                        <div class="upload-area" onclick="showCreateQuizModal()">
+                            <div class="upload-icon">➕</div>
+                            <p>Create interactive quiz</p>
+                            <small>Add questions, answers, and explanations</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Classroom Modal -->
+    <div id="createClassroomModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('createClassroomModal')">&times;</span>
+            <h2 data-translate="create_new_classroom">Create New Classroom</h2>
+            <form id="createClassroomForm" onsubmit="createClassroom(event)">
+                <div class="form-group">
+                    <label for="classroomName" data-translate="classroom_name">Classroom Name</label>
+                    <input type="text" id="classroomName" required placeholder="e.g., Class 10-A Mathematics">
+                </div>
+                <div class="form-group">
+                    <label for="classroomSubject" data-translate="subject">Subject</label>
+                    <select id="classroomSubject" required>
+                        <option value="">Select Subject</option>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="english">English</option>
+                        <option value="history">History</option>
+                        <option value="computer">Computer Science</option>
+                        <option value="geography">Geography</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="classroomGrade" data-translate="grade">Grade/Class</label>
+                    <select id="classroomGrade" required>
+                        <option value="">Select Grade</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="classroomDescription" data-translate="description">Description</label>
+                    <textarea id="classroomDescription" rows="3" placeholder="Brief description of the classroom"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('createClassroomModal')" data-translate="cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary" data-translate="create">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Student Modal -->
+    <div id="addStudentModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addStudentModal')">&times;</span>
+            <h2 data-translate="add_student">Add Student</h2>
+            <form id="addStudentForm" onsubmit="addStudent(event)">
+                <div class="form-group">
+                    <label for="studentName" data-translate="student_name">Student Name</label>
+                    <input type="text" id="studentName" required placeholder="Full name">
+                </div>
+                <div class="form-group">
+                    <label for="studentEmail" data-translate="email">Email (Optional)</label>
+                    <input type="email" id="studentEmail" placeholder="student@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="studentClassroom" data-translate="classroom">Classroom</label>
+                    <select id="studentClassroom" required>
+                        <option value="">Select Classroom</option>
+                        <!-- Will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="studentId" data-translate="student_id">Student ID</label>
+                    <input type="text" id="studentId" required placeholder="e.g., STU001">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addStudentModal')" data-translate="cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary" data-translate="add">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Assignment Modal -->
+    <div id="createAssignmentModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('createAssignmentModal')">&times;</span>
+            <h2 data-translate="create_assignment">Create Assignment</h2>
+            <form id="createAssignmentForm" onsubmit="createAssignment(event)">
+                <div class="form-group">
+                    <label for="assignmentTitle" data-translate="assignment_title">Assignment Title</label>
+                    <input type="text" id="assignmentTitle" required placeholder="e.g., Algebra Practice Problems">
+                </div>
+                <div class="form-group">
+                    <label for="assignmentClassroom" data-translate="classroom">Assign to Classroom</label>
+                    <select id="assignmentClassroom" required>
+                        <option value="">Select Classroom</option>
+                        <!-- Will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="assignmentDueDate" data-translate="due_date">Due Date</label>
+                    <input type="datetime-local" id="assignmentDueDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="assignmentDescription" data-translate="assignment_description">Description</label>
+                    <textarea id="assignmentDescription" rows="4" required placeholder="Assignment instructions and requirements"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="assignmentPoints" data-translate="points">Points</label>
+                    <input type="number" id="assignmentPoints" min="1" max="1000" value="100">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('createAssignmentModal')" data-translate="cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary" data-translate="create">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Student Detail Modal -->
+    <div id="studentDetailModal" class="modal" style="display: none;">
+        <div class="modal-content large">
+            <span class="close" onclick="closeModal('studentDetailModal')">&times;</span>
+            <h2 id="studentDetailName">Student Details</h2>
+            <div id="studentDetailContent">
+                <!-- Student details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Progress Modal -->
+    <div id="uploadProgressModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2 data-translate="uploading">Uploading Content</h2>
+            <div class="upload-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="uploadProgressFill" style="width: 0%"></div>
+                </div>
+                <div class="progress-text" id="uploadProgressText">0%</div>
+            </div>
+            <p id="uploadStatus">Preparing upload...</p>
+            <button class="btn btn-secondary" onclick="cancelUpload()" id="cancelUploadBtn" data-translate="cancel">Cancel</button>
+        </div>
+    </div>
+
+    <script src="languages.js"></script>
+    <script src="teacher.js"></script>
+</body>
+
+</html>

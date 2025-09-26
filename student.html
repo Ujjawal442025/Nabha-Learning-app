@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-translate="app_name">Nabha Learning App - Student</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Lemon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="newstudent.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3338A0">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="title">
+            <div class="logo"><img src="logoN.jpg" alt="logo"></div>
+            <div class="heading">
+                <h1 data-translate="app_name">Nabha Learning App</h1>
+                <p id="welcomeName" data-translate="welcome">Welcome</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="connectivity-status" id="connectivityStatus" data-translate="online">🟢 Online</div>
+            <button class="logout-btn" onclick="logout()" data-translate="logout">Logout</button>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <button data-section="dashboard" class="active" data-translate="dashboard">🏠 Dashboard</button>
+            <button data-section="subjects" data-translate="subjects">📚 Subjects</button>
+            <button data-section="videos" data-translate="lessons">🎦 Lessons</button>
+            <button data-section="assignments" data-translate="assignments">📝 Assignments</button>
+            <button data-section="progress" data-translate="progress">📊 Progress</button>
+            <button data-section="translator" data-translate="translator">🌐 Translator</button>
+            <button data-section="digital-literacy" data-translate="digital_literacy">💻 Digital Literacy</button>
+            <button data-section="offline" data-translate="offline">📱 Offline</button>
+        </div>
+
+        <div class="content-area">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section active">
+                <h2 class="section-title" data-translate="dashboard">Dashboard</h2>
+                <div class="main">
+                    <div class="card" id="card1">
+                        <h2 id="totalLessonsCount">4</h2>
+                        <h4 data-translate="total_lessons">Total Lessons</h4>
+                    </div>
+                    <div class="card" id="card2">
+                        <h2 id="completedCount">2</h2>
+                        <h4 data-translate="completed">Completed</h4>
+                    </div>
+                    <div class="card" id="card3">
+                        <h2 id="downloadedCount">3</h2>
+                        <h4 data-translate="downloaded">Downloaded</h4>
+                    </div>
+                    <div class="card" id="card4">
+                        <h2 id="assignmentsDoneCount">1</h2>
+                        <h4 data-translate="assignments_done">Assignments Done</h4>
+                    </div>
+                </div>
+                <div class="extra">
+                    <h3 data-translate="recent_activity">Recent Activity</h3>
+                    <div class="activity">
+                        <div class="classes">
+                            <h4>Introduction to Computers</h4>
+                            <div class="details">
+                                <p>15:30 mins</p>
+                                <p>✅Completed</p>
+                                <p>📩Downloaded</p>
+                            </div>
+                        </div>
+                        <div class="review">
+                            <button data-translate="review">Review</button>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="classes">
+                            <h4>HTML Basics</h4>
+                            <div class="details">
+                                <p>30:00 mins</p>
+                                <p>❎Not Completed</p>
+                                <p>📩Downloaded</p>
+                            </div>
+                        </div>
+                        <div class="review">
+                            <button data-translate="review">Review</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subjects Section -->
+            <div id="subjects" class="section">
+                <h2 class="section-title" data-translate="subjects_materials">Subjects & Study Materials</h2>
+                <div class="subjects-grid">
+                    <div class="subject-card">
+                        <div class="subject-extra">
+                            <div class="subject-name" data-translate="mathematics">📊 Mathematics</div>
+                            <div class="subject-topics">Algebra, Geometry, Calculus</div>
+                        </div>
+                        <div class="subject-actions">
+                            <button class="btn btn-primary" onclick="downloadPDF('mathematics')" data-translate="download_pdf">📖 Download PDF</button>
+                            <button class="btn btn-secondary" onclick="openTest('mathematics')" data-translate="take_test">📝 Take Test</button>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card">
+                        <div class="subject-extra">
+                            <div class="subject-name" data-translate="science">🔬 Science</div>
+                            <div class="subject-topics">Physics, Chemistry, Biology</div>
+                        </div>
+                        <div class="subject-actions">
+                            <button class="btn btn-primary" onclick="downloadPDF('science')" data-translate="download_pdf">📖 Download PDF</button>
+                            <button class="btn btn-secondary" onclick="openTest('science')" data-translate="take_test">📝 Take Test</button>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card">
+                        <div class="subject-extra">
+                            <div class="subject-name" data-translate="english">📚 English</div>
+                            <div class="subject-topics">Grammar, Literature, Writing</div>
+                        </div>
+                        <div class="subject-actions">
+                            <button class="btn btn-primary" onclick="downloadPDF('english')" data-translate="download_pdf">📖 Download PDF</button>
+                            <button class="btn btn-secondary" onclick="openTest('english')" data-translate="take_test">📝 Take Test</button>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card">
+                        <div class="subject-extra">
+                            <div class="subject-name" data-translate="history">🏛️ History</div>
+                            <div class="subject-topics">Ancient, Medieval, Modern</div>
+                        </div>
+                        <div class="subject-actions">
+                            <button class="btn btn-primary" onclick="downloadPDF('history')" data-translate="download_pdf">📖 Download PDF</button>
+                            <button class="btn btn-secondary" onclick="openTest('history')" data-translate="take_test">📝 Take Test</button>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card">
+                        <div class="subject-extra">
+                            <div class="subject-name" data-translate="computer_science">💻 Computer Science</div>
+                            <div class="subject-topics">Programming, Web Development</div>
+                        </div>
+                        <div class="subject-actions">
+                            <button class="btn btn-primary" onclick="downloadPDF('computer')" data-translate="download_pdf">📖 Download PDF</button>
+                            <button class="btn btn-secondary" onclick="openTest('computer')" data-translate="take_test">📝 Take Test</button>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card">
+                        <div class="subject-extra">
+                            <div class="subject-name" data-translate="geography">🌍 Geography</div>
+                            <div class="subject-topics">Physical, Human, Environmental</div>
+                        </div>
+                        <div class="subject-actions">
+                            <button class="btn btn-primary" onclick="downloadPDF('geography')" data-translate="download_pdf">📖 Download PDF</button>
+                            <button class="btn btn-secondary" onclick="openTest('geography')" data-translate="take_test">📝 Take Test</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Videos Section -->
+            <div id="videos" class="section">
+                <h2 class="section-title" data-translate="video_lessons">Video Lessons</h2>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">▶️</div>
+                        <div class="video-info">
+                            <div class="video-extra">
+                                <div class="video-title">Algebra Fundamentals</div>
+                                <div class="video-subject">• Mathematics</div>
+                            </div>
+                            <div class="video-actions">
+                                <button class="btn btn-primary" onclick="watchVideo('https://www.youtube.com/watch?v=NybHckSEQBI')" data-translate="watch_now">Watch Now</button>
+                                <button class="btn btn-download" onclick="downloadVideo('algebra_fundamentals')">📥 Download</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">▶️</div>
+                        <div class="video-info">
+                            <div class="video-extra">
+                                <div class="video-title">Physics Laws Explained</div>
+                                <div class="video-subject">• Science</div>
+                            </div>
+                            <div class="video-actions">
+                                <button class="btn btn-primary" onclick="watchVideo('https://www.youtube.com/watch?v=b240PGCMwV0')" data-translate="watch_now">Watch Now</button>
+                                <button class="btn btn-download" onclick="downloadVideo('physics_laws')">📥 Download</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">▶️</div>
+                        <div class="video-info">
+                            <div class="video-extra">
+                                <div class="video-title">English Grammar Basics</div>
+                                <div class="video-subject">• English</div>
+                            </div>
+                            <div class="video-actions">
+                                <button class="btn btn-primary" onclick="watchVideo('https://www.youtube.com/watch?v=P4ramoioWnw')" data-translate="watch_now">Watch Now</button>
+                                <button class="btn btn-download" onclick="downloadVideo('english_grammar')">📥 Download</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">▶️</div>
+                        <div class="video-info">
+                            <div class="video-extra">
+                                <div class="video-title">World History Overview</div>
+                                <div class="video-subject">• History</div>
+                            </div>
+                            <div class="video-actions">
+                                <button class="btn btn-primary" onclick="watchVideo('https://www.youtube.com/watch?v=xuCn8ux2gbs')" data-translate="watch_now">Watch Now</button>
+                                <button class="btn btn-download" onclick="downloadVideo('world_history')">📥 Download</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">▶️</div>
+                        <div class="video-info">
+                            <div class="video-extra">
+                                <div class="video-title">Programming Basics</div>
+                                <div class="video-subject">• Computer Science</div>
+                            </div>
+                            <div class="video-actions">
+                                <button class="btn btn-primary" onclick="watchVideo('https://www.youtube.com/watch?v=zOjov-2OZ0E')" data-translate="watch_now">Watch Now</button>
+                                <button class="btn btn-download" onclick="downloadVideo('programming_basics')">📥 Download</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">▶️</div>
+                        <div class="video-info">
+                            <div class="video-extra">
+                                <div class="video-title">Physical Geography</div>
+                                <div class="video-subject">• Geography</div>
+                            </div>
+                            <div class="video-actions">
+                                <button class="btn btn-primary" onclick="watchVideo('https://www.youtube.com/watch?v=VGu5pTp9ANk')" data-translate="watch_now">Watch Now</button>
+                                <button class="btn btn-download" onclick="downloadVideo('physical_geography')">📥 Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assignments Section -->
+            <div id="assignments" class="section">
+                <h2 class="section-title" data-translate="assignments_quizzes">Assignments & Quizzes</h2>
+                <div class="assignments-grid">
+                    <div class="assignment-card">
+                        <div class="assignment-info">
+                            <div class="assignment-title">Assignment 1: HTML Basics</div>
+                            <div class="assignment-due" data-translate="due">Due: 2025-09-20</div>
+                        </div>
+                        <button class="btn btn-primary" onclick="openTest('html-basics')" data-translate="start_assignment">Start Assignment</button>
+                    </div>
+                    <div class="assignment-card">
+                        <div class="assignment-info">
+                            <div class="assignment-title">Assignment 2: CSS Styling</div>
+                            <div class="assignment-due" data-translate="due">Due: 2025-09-25</div>
+                        </div>
+                        <button class="btn btn-primary" onclick="openTest('css-styling')" data-translate="start_assignment">Start Assignment</button>
+                    </div>
+                    <div class="assignment-card">
+                        <div class="assignment-info">
+                            <div class="assignment-title">Math Quiz: Algebra</div>
+                            <div class="assignment-due" data-translate="due">Due: 2025-09-22</div>
+                        </div>
+                        <button class="btn btn-primary" onclick="openTest('algebra-quiz')" data-translate="take_quiz">Take Quiz</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div id="progress" class="section">
+                <h2 class="section-title" data-translate="learning_progress">Learning Progress</h2>
+                <div class="progress-section">
+                    <div class="progress-item">
+                        <div class="progress-info">
+                            <span class="progress-subject" data-translate="mathematics">Mathematics</span>
+                            <span class="progress-percentage">75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-info">
+                            <span class="progress-subject" data-translate="science">Science</span>
+                            <span class="progress-percentage">60%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-info">
+                            <span class="progress-subject" data-translate="english">English</span>
+                            <span class="progress-percentage">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-results" id="testResults" style="display: none;">
+                    <h3>Latest Test Results</h3>
+                    <div id="resultsContent"></div>
+                </div>
+                <div class="progress-results">
+                    <h3>Assignment Results</h3>
+                    <div id="assignmentResults"></div>
+                </div>
+                <div class="progress-results">
+                    <h3>Subject Test Results</h3>
+                    <div id="subjectResults"></div>
+                </div>
+            </div>
+
+            <!-- NEW: Translator Section -->
+            <div id="translator" class="section">
+                <h2 class="section-title" data-translate="translator">🌐 Translator</h2>
+                <div class="translator-container">
+                    <div class="translator-card">
+                        <h3>English to Punjabi Translator</h3>
+                        <div class="translation-area">
+                            <div class="input-section">
+                                <label for="textToTranslate">Enter English text:</label>
+                                <textarea id="textToTranslate" placeholder="Type your text here..." rows="5"></textarea>
+                                <button class="btn btn-primary" onclick="translateText()">🔄 Translate</button>
+                            </div>
+                            <div class="output-section">
+                                <label>Punjabi Translation:</label>
+                                <div id="translationResult" class="translation-output">Translation will appear here...</div>
+                                <button class="btn btn-secondary" onclick="speakPunjabi()" id="speakBtn" style="display:none;">🔊 Listen</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quick-phrases">
+                        <h4>Quick Phrases</h4>
+                        <div class="phrases-grid">
+                            <button class="phrase-btn" onclick="quickTranslate('hello')">Hello</button>
+                            <button class="phrase-btn" onclick="quickTranslate('thank you')">Thank You</button>
+                            <button class="phrase-btn" onclick="quickTranslate('good morning')">Good Morning</button>
+                            <button class="phrase-btn" onclick="quickTranslate('how are you')">How are you?</button>
+                            <button class="phrase-btn" onclick="quickTranslate('education')">Education</button>
+                            <button class="phrase-btn" onclick="quickTranslate('learning')">Learning</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW: Digital Literacy Section -->
+            <div id="digital-literacy" class="section">
+                <h2 class="section-title" data-translate="digital_literacy">💻 Digital Literacy</h2>
+                <div class="digital-literacy-grid">
+                    <div class="literacy-card">
+                        <div class="literacy-icon">💻</div>
+                        <h3 data-translate="basic_computer">Basic Computer Skills</h3>
+                        <div class="literacy-content">
+                            <img src="basiccompskill.jpg" alt="Mouse clicking animation" class="learning-gif">
+                            <p>Learn how to use mouse, keyboard, and basic computer operations.</p>
+                            <button class="btn btn-primary" onclick="startLiteracyModule('basic-computer')">Start Learning</button>
+                        </div>
+                    </div>
+                    
+                    <div class="literacy-card">
+                        <div class="literacy-icon">🌐</div>
+                        <h3 data-translate="internet_usage">Internet Usage</h3>
+                        <div class="literacy-content">
+                            <img src="intrntusg.jpg" alt="Browser navigation animation" class="learning-gif">
+                            <p>Learn how to browse the internet safely and effectively.</p>
+                            <button class="btn btn-primary" onclick="startLiteracyModule('internet-usage')">Start Learning</button>
+                        </div>
+                    </div>
+                    
+                    <div class="literacy-card">
+                        <div class="literacy-icon">🔒</div>
+                        <h3 data-translate="digital_safety">Digital Safety</h3>
+                        <div class="literacy-content">
+                            <img src="digital.jpg" alt="Password security animation" class="learning-gif">
+                            <p>Learn about online security, passwords, and safe browsing.</p>
+                            <button class="btn btn-primary" onclick="startLiteracyModule('digital-safety')">Start Learning</button>
+                        </div>
+                    </div>
+                    
+                    <div class="literacy-card">
+                        <div class="literacy-icon">📚</div>
+                        <h3 data-translate="online_learning">Online Learning Tips</h3>
+                        <div class="literacy-content">
+                            <img src="onlinelearn.jpg" alt="Online study animation" class="learning-gif">
+                            <p>Tips and techniques for effective online learning.</p>
+                            <button class="btn btn-primary" onclick="startLiteracyModule('online-learning')">Start Learning</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Offline Section -->
+            <div id="offline" class="section">
+                <h2 class="section-title" data-translate="offline_content">Offline Content</h2>
+                <div class="offline-stats">
+                    <div class="stat-card">
+                        <h3 id="offlineVideosCount">5</h3>
+                        <p>Videos Downloaded</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="offlinePDFsCount">12</h3>
+                        <p>PDFs Downloaded</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="storageUsed">2.3 GB</h3>
+                        <p>Storage Used</p>
+                    </div>
+                </div>
+                
+                <div class="offline-content-grid">
+                    <h4>Downloaded Videos</h4>
+                    <div id="downloadedVideos" class="downloaded-items">
+                        <!-- Downloaded videos will be populated here -->
+                    </div>
+                    
+                    <h4>Downloaded PDFs</h4>
+                    <div id="downloadedPDFs" class="downloaded-items">
+                        <!-- Downloaded PDFs will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="storage-management">
+                    <h4>Storage Management</h4>
+                    <div class="storage-bar">
+                        <div class="storage-used" style="width: 45%;"></div>
+                    </div>
+                    <p>Using 2.3 GB of 5 GB available</p>
+                    <button class="btn btn-secondary" onclick="clearOfflineContent()">🗑️ Clear All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeQuiz()">&times;</span>
+            <h2 id="quizTitle">Quiz</h2>
+            <div id="quizContent">
+                <!-- Quiz questions will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Digital Literacy Module Modal -->
+    <div id="literacyModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeLiteracyModule()">&times;</span>
+            <h2 id="literacyTitle">Digital Literacy Module</h2>
+            <div id="literacyContent">
+                <!-- Module content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="languages.js"></script>
+    <script src="student.js"></script>
+</body>
+
+</html>
